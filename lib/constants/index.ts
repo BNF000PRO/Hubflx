@@ -23,5 +23,6 @@ export const eventDefaultValues = {
   categoryId: "",
   price: "",
   isFree: false,
+  TrailerUrl: "",
   url: "",
 };

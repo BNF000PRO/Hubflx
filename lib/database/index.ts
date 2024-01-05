@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
+mongoose.set("debug", true);
+
 let cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
@@ -17,6 +19,7 @@ export const connectToDatabase = async () => {
     });
 
   cached.conn = await cached.promise;
+  console.log("Connected to MongoDB:", MONGODB_URL);
 
   return cached.conn;
 };

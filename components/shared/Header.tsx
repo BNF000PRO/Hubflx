@@ -30,11 +30,11 @@ const Header = () => {
             <UserButton afterSignOutUrl="/" />
             <MobileNav />
           </SignedIn>
-          <SignedOut>
-            <Button asChild className="rounded-full" size="lg">
-              <Link href="/sign-in">Join Hubflix</Link>
+          <Link href="/">
+            <Button className="rounded-full" size="lg">
+              Explore
             </Button>
-          </SignedOut>
+          </Link>
         </div>
       </div>
     </header>

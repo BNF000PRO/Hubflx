@@ -29,6 +29,7 @@ export type CreateEventParams = {
     price: string;
     isFree: boolean;
     url: string;
+    TrailerUrl: string;
   };
   path: string;
 };
@@ -47,6 +48,7 @@ export type UpdateEventParams = {
     price: string;
     isFree: boolean;
     url: string;
+    TrailerUrl: string;
   };
   path: string;
 };
@@ -87,6 +89,7 @@ export type Event = {
   startDateTime: Date;
   endDateTime: Date;
   url: string;
+  TrailerUrl: string;
   organizer: {
     _id: string;
     firstName: string;
