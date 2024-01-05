@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
   return (
     <>
       <section className=" bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-8 pt-1">
-        <div className=" ml-4 grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
+        <div className=" m-4 grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-3">
             <h1 className="font-bold text-3xl sm:text-3xl md:text-5xl lg:text-5xl">
               Download, Promote, Connect: Explore Contents on Our Platform!
