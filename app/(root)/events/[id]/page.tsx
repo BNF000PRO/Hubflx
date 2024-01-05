@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button";
 import Collection from "@/components/shared/Collection";
-import { getEventById } from "@/lib/actions/user.actions";
+
 import { formatDateTime } from "@/lib/utils";
 import { SearchParamProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getRelatedEventsByCategory } from "@/lib/actions/event.actions";
+import {
+  getEventById,
+  getRelatedEventsByCategory,
+} from "@/lib/actions/event.actions";
 import CheckoutButton from "@/components/shared/CheckoutButton";
 
 const EventDetails = async ({
@@ -63,7 +66,7 @@ const EventDetails = async ({
 
             {/* {DOWNLOAD BUTTON} */}
             {/* <CheckoutButton event={event} /> */}
-            <Link href={event.TrailerUrl} target="_blank" rel="noopener">
+            <Link href={event.TrailerUrl}>
               <Button className="p-medium-16 lg:p-regular-18 rounded-full truncate">
                 <p>See Teaser..</p>
               </Button>
@@ -99,7 +102,7 @@ const EventDetails = async ({
             <div className="flex flex-col gap-2">
               <p className="p-bold-20 text-grey-600">Synopsis</p>
               <p className="p-medium-16 lg:p-regular-18">{event.description}</p>
-              <Link href={event.url} target="_blank" rel="noopener">
+              <Link href={event.url}>
                 <Button className="p-medium-16 lg:p-regular-18 truncate">
                   <p>Download</p>
                 </Button>
@@ -117,7 +120,7 @@ const EventDetails = async ({
           emptyTitle="No Contents Found"
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
-          limit={5}
+          limit={6}
           page={searchParams.page as string}
           totalPages={relatedEvents?.totalPages}
         />
