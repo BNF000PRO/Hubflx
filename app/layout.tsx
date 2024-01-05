@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "HubFlix",
-  description: "Get the latest movies online for free",
+  description: "Get the latest quality contents online for free",
   icons: {
     icon: "/assets/images/logo.svg",
   },
