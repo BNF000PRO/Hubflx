@@ -10,6 +10,8 @@ import {
 import Image from "next/image";
 import { Separator } from "../ui/separator";
 import Navitems from "./Navitems";
+import Search from "./Search";
+import CategoryFilter from "./CategoryFilter";
 
 const MobileNav = () => {
   return (
@@ -32,7 +34,8 @@ const MobileNav = () => {
             height={20}
           />
           <Separator className="border border-gray-200 w-full" />
-          <Navitems />
+          <Search />
+          <CategoryFilter />
         </SheetContent>
       </Sheet>
     </nav>
