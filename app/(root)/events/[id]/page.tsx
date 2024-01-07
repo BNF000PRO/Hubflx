@@ -66,11 +66,13 @@ const EventDetails = async ({
 
             {/* {DOWNLOAD BUTTON} */}
             {/* <CheckoutButton event={event} /> */}
-            <Link href={event.TrailerUrl}>
-              <Button className="p-medium-16 lg:p-regular-18 rounded-full truncate">
-                <p>See Teaser..</p>
-              </Button>
-            </Link>
+            <div>
+              <Link href={event.TrailerUrl}>
+                <Button className="p-medium-16 lg:p-regular-18 rounded-full truncate">
+                  <p>See Teaser..</p>
+                </Button>
+              </Link>
+            </div>
 
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 md:gap-3">
@@ -102,6 +104,14 @@ const EventDetails = async ({
             <div className="flex flex-col gap-2">
               <p className="p-bold-20 text-grey-600">Synopsis</p>
               <p className="p-medium-16 lg:p-regular-18">{event.description}</p>
+              <Link
+                href="https://www.toprevenuegate.com/xp46ezp1eb?key=583f4213e5767558f3d709261e02ed0d"
+                target="_blank"
+              >
+                <Button className="p-medium-16 lg:p-regular-18 truncate">
+                  <p>Download</p>
+                </Button>
+              </Link>
               <Link href={event.url}>
                 <Button className="p-medium-16 lg:p-regular-18 truncate">
                   <p>Download</p>
