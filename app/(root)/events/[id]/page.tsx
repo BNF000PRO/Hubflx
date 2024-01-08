@@ -104,14 +104,6 @@ const EventDetails = async ({
             <div className="flex flex-col gap-2">
               <p className="p-bold-20 text-grey-600">Synopsis</p>
               <p className="p-medium-16 lg:p-regular-18">{event.description}</p>
-              <Link
-                href="https://www.toprevenuegate.com/xp46ezp1eb?key=583f4213e5767558f3d709261e02ed0d"
-                target="_blank"
-              >
-                <Button className="p-medium-16 lg:p-regular-18 truncate">
-                  <p>Download</p>
-                </Button>
-              </Link>
               <Link href={event.url}>
                 <Button className="p-medium-16 lg:p-regular-18 truncate">
                   <p>Download</p>
