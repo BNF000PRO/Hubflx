@@ -34,8 +34,7 @@ const MobileNav = () => {
             height={20}
           />
           <Separator className="border border-gray-200 w-full" />
-          <Search />
-          <CategoryFilter />
+          <Navitems />
         </SheetContent>
       </Sheet>
     </nav>
