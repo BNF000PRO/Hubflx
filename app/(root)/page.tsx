@@ -16,7 +16,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
     query: searchText,
     category,
     page,
-    limit: 10,
+    limit: 12,
   });
 
   return (
@@ -64,7 +64,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           emptyTitle="No Contents Found"
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
-          limit={10}
+          limit={12}
           page={page}
           totalPages={events?.totalPages}
         />
