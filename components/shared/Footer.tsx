@@ -18,7 +18,7 @@ const Footer = () => {
           />
         </Link>
 
-        <p>&copy; 2023 Hubflix. All Right reserved.</p>
+        <p>&copy; 2023 Hubnet. All Right reserved.</p>
       </div>
     </footer>
   );
