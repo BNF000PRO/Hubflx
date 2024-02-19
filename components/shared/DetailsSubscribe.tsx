@@ -10,16 +10,9 @@ const DetailsSubscribe = () => {
     hover:shadow-lg md:min-[138px] md:hidden"
     >
       <p className="p-regular-12 text-sm p-5 md:p-regular-20 size-fit ">
-        <h3 className="text-center p-2 pt-2 font-bold ">Welcome to Hublix</h3>
-        🌟 Unlock the World of Free Entertainment! 🎉 Dive into a treasure trove
-        of the best content on the internet—all for FREE! 🚀 Download movies,
-        music, Ebooks, AI Tutorials, and discover the secrets of making money
-        online. 💰 But wait, there's more! 🌐 Join our vibrant community by
-        subscribing to our WhatsApp. 📲 Never miss out on exciting updates and
-        exclusive content. 🚀 Ready to promote your products? Advertise with us
-        and reach a broader audience. 🌍 Don't miss the wave! 🌊 Stay tuned
-        because Hubflix AI is coming soon to elevate your online experience! 🚀
-        Subscribe now and be a part of the revolution! 🌟💻✨
+        <h3 className="text-center p-2 pt-2 font-bold ">Welcome to Hubnet</h3>
+        Elevate your online experience! 🚀 Join our Whatsapp Channel to stay
+        updated with the latest contents! 🌟💻✨
       </p>
 
       <Button>
