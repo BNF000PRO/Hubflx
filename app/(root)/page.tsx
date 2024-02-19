@@ -2,6 +2,7 @@ import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
 import DetailsSubscribe from "@/components/shared/DetailsSubscribe";
 import Search from "@/components/shared/Search";
+import { Slider } from "@/components/shared/Slider";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
@@ -52,7 +53,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <h2 className="h2-bold pt-1">
           Trusted by <br /> Thousands of Visitors
         </h2>
-
+        <div>
+          <Slider />
+        </div>
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <CategoryFilter />
           <DetailsSubscribe />
