@@ -11,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Hubnet",
-  description: "Get the latest quality contents online for free",
+  title: "IQ CABAL",
+  description: "The Digital City For Hustlers. Master AI. Scale Digital Growth. Level Up Your Mindset.",
   icons: {
     icon: "/assets/images/logo.svg",
   },
