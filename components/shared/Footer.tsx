@@ -12,13 +12,13 @@ const Footer = () => {
         <Link href="/">
           <Image
             alt="logo"
-            src="/assets/images/lo.svg"
+            src="/assets/icons/iqcaballogo.png"
             width={100}
             height={20}
           />
         </Link>
 
-        <p>&copy; 2023 Hubnet. All Right reserved.</p>
+        <p>&copy; 2023 IQ CABAL. All Right reserved.</p>
       </div>
     </footer>
   );
