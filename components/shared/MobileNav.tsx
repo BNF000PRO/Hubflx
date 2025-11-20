@@ -29,7 +29,7 @@ const MobileNav = () => {
         <SheetContent className="flex flex-col gap-6 md:hidden bg-white">
           <Image
             alt="logo"
-            src="/assets/images/lo.svg"
+            src="/assets/icons/iqcaballogo.png"
             width={110}
             height={20}
           />
