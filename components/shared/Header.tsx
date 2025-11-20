@@ -13,7 +13,7 @@ const Header = () => {
         <Link href="/" className="w-36">
           <Image
             alt="logo"
-            src="/assets/icons/hubbb.jpeg"
+            src="/assets/icons/iqcaballogo.png"
             width={100}
             height={20}
           />
