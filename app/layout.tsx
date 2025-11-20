@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "IQ CABAL",
   description: "The Digital City For Hustlers. Master AI. Scale Digital Growth. Level Up Your Mindset.",
   icons: {
-    icon: "/assets/images/iqlogo.svg",
+    icon: "/assets/images/iqcabalfav.png",
   },
 };
 
