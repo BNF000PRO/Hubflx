@@ -1,0 +1,530 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 40% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 40% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 250 95% 65%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 210 40% 12%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 40% 15%;
+    --input: 210 40% 15%;
+    --ring: 250 95% 65%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-poppins);
+  background-color: #0A192F;
+  color: #E2E8F0;
+}
+
+.filter-grey {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%)
+    hue-rotate(32deg) brightness(98%) contrast(92%);
+}
+
+/* ========================================== TAILWIND STYLES */
+@layer utilities {
+  .wrapper {
+    @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  /* TYPOGRAPHY */
+  /* 64 */
+  .h1-bold {
+    @apply font-bold p-[40px] leading-[48px] lg:text-[48px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px];
+  }
+
+  /* 40 */
+  .h2-bold {
+    @apply font-bold text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+  }
+
+  .h2-medium {
+    @apply font-medium text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+  }
+
+  /* 36 */
+  .h3-bold {
+    @apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+  }
+
+  .h3-medium {
+    @apply font-medium text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+  }
+
+  /* 32 */
+  .h4-medium {
+    @apply font-medium text-[32px] leading-[40px];
+  }
+
+  /* 28 */
+  .h5-bold {
+    @apply font-bold text-[28px] leading-[36px];
+  }
+
+  /* 24 */
+  .p-bold-24 {
+    @apply font-bold text-[24px] leading-[36px];
+  }
+
+  .p-medium-24 {
+    @apply font-medium text-[24px] leading-[36px];
+  }
+
+  .p-regular-24 {
+    @apply font-normal text-[24px] leading-[36px];
+  }
+
+  /* 20 */
+  .p-bold-20 {
+    @apply font-bold text-[20px] leading-[30px] tracking-[2%];
+  }
+
+  .p-semibold-20 {
+    @apply text-[20px] font-semibold leading-[30px] tracking-[2%];
+  }
+
+  .p-medium-20 {
+    @apply text-[20px] font-medium leading-[30px];
+  }
+
+  .p-regular-20 {
+    @apply text-[20px] font-normal leading-[30px] tracking-[2%];
+  }
+
+  /* 18 */
+  .p-semibold-18 {
+    @apply text-[18px] font-semibold leading-[28px] tracking-[2%];
+  }
+
+  .p-medium-18 {
+    @apply text-[18px] font-medium leading-[28px];
+  }
+
+  .p-regular-18 {
+    @apply text-[18px] font-normal leading-[28px] tracking-[2%];
+  }
+
+  /* 16 */
+  .p-bold-16 {
+    @apply text-[16px] font-bold leading-[24px];
+  }
+
+  .p-medium-16 {
+    @apply text-[16px] font-medium leading-[24px];
+  }
+
+  .p-regular-16 {
+    @apply text-[16px] font-normal leading-[24px];
+  }
+
+  /* 14 */
+  .p-semibold-14 {
+    @apply text-[14px] font-semibold leading-[20px];
+  }
+
+  .p-medium-14 {
+    @apply text-[14px] font-medium leading-[20px];
+  }
+
+  .p-regular-14 {
+    @apply text-[14px] font-normal leading-[20px];
+  }
+
+  /* 12 */
+  .p-medium-12 {
+    @apply text-[12px] font-medium leading-[20px];
+  }
+
+  /* SHADCN OVERRIDES */
+  .select-field {
+    @apply w-full bg-white/80 backdrop-blur-sm h-[54px] placeholder:text-grey-500 rounded-full p-regular-16 px-5 py-3 border border-gray-200 focus-visible:ring-2 focus-visible:ring-primary-500/20 focus:border-primary-500/50 transition-all !important;
+  }
+
+  .input-field {
+    @apply bg-white/80 backdrop-blur-sm h-[54px] focus-visible:ring-offset-0 placeholder:text-grey-500 rounded-full p-regular-16 px-4 py-3 border border-gray-200 focus-visible:ring-2 focus-visible:ring-primary-500/20 focus:border-primary-500/50 transition-all !important;
+  }
+
+  .textarea {
+    @apply bg-white/80 backdrop-blur-sm flex flex-1 placeholder:text-grey-500 p-regular-16 px-5 py-3 border border-gray-200 rounded-xl focus-visible:ring-2 focus-visible:ring-primary-500/20 focus:border-primary-500/50 transition-all !important;
+  }
+
+  .button {
+    @apply rounded-full h-[54px] p-regular-16 transition-all duration-200;
+  }
+
+  /* Futuristic animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(98, 76, 245, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(98, 76, 245, 0.6);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(10px) translateY(-5px);
+    }
+    50% {
+      transform: translateX(0) translateY(-10px);
+    }
+    75% {
+      transform: translateX(-10px) translateY(-5px);
+    }
+  }
+
+  @keyframes rotate-3d {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(360deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes pulse-glow-slow {
+    0%, 100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow-slow {
+    animation: pulse-glow-slow 4s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+  }
+
+  .animate-wave {
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  @keyframes waveform {
+    0%, 100% {
+      d: path("M 0,60 Q 150,20 300,60 T 600,60 T 900,60 T 1200,60");
+    }
+    25% {
+      d: path("M 0,60 Q 150,100 300,60 T 600,60 T 900,60 T 1200,60");
+    }
+    50% {
+      d: path("M 0,60 Q 150,20 300,60 T 600,60 T 900,60 T 1200,60");
+    }
+    75% {
+      d: path("M 0,60 Q 150,100 300,60 T 600,60 T 900,60 T 1200,60");
+    }
+  }
+
+  .animate-rotate-3d {
+    animation: rotate-3d 20s linear infinite;
+  }
+
+  .animate-waveform {
+    animation: waveform 3s ease-in-out infinite;
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+
+  /* Perspective for 3D transforms */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Fix for image visibility on desktop - Force all images to be visible */
+  img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ensure images in cards are visible */
+  [class*="group"] img,
+  [class*="Card"] img,
+  [class*="card"] img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  /* Override any ScrollReveal opacity on images */
+  [style*="opacity"] img {
+    opacity: 1 !important;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(98, 76, 245, 0.4), 0 0 40px rgba(98, 76, 245, 0.2);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(98, 76, 245, 0.6), 0 0 60px rgba(98, 76, 245, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Liquid morph button effect */
+  .liquid-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .liquid-button:active::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Tilt card effect */
+  .tilt-card {
+    transition: transform 0.3s ease;
+  }
+
+  .tilt-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
+  }
+
+  .select-item {
+    @apply py-3 cursor-pointer  focus:bg-primary-50;
+  }
+
+  .toggle-switch {
+    @apply bg-gray-300 !important;
+  }
+}
+
+/* ========================================== CLERK STYLES */
+.cl-logoImage {
+  height: 38px;
+}
+
+.cl-userButtonBox {
+  flex-direction: row-reverse;
+}
+
+.cl-userButtonOuterIdentifier {
+  font-size: 16px;
+}
+
+.cl-userButtonPopoverCard {
+  right: 4px !important;
+}
+
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:active {
+  background-color: #705cf7;
+}
+
+/* ========================================== REACT-DATEPICKER STYLES */
+.datePicker {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  margin-left: 16px;
+}
+
+.react-datepicker__day--selected {
+  background-color: #624cf5 !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: #624cf5 !important;
+}
+
+/* ========================================== CRITICAL IMAGE VISIBILITY FIX */
+/* Force all images to be visible - Override everything including ScrollReveal */
+img,
+img[src],
+img[data-src],
+[data-next-image],
+picture img,
+span img,
+div img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Override any parent opacity on images */
+[style*="opacity: 0"] img,
+[style*="opacity:0"] img,
+[style*="opacity: 0;"] img {
+  opacity: 1 !important;
+}
+
+/* Ensure images in all containers are visible */
+* img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force Next.js Image components to be visible */
+span[style*="opacity"] img,
+div[style*="opacity"] img,
+[style*="opacity"] img {
+  opacity: 1 !important;
+}
+
+/* Desktop specific fix */
+@media (min-width: 1024px) {
+  img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+}
