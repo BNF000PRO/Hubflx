@@ -12,7 +12,7 @@ import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
-import { Menu, Home, Sparkles, Plus, User } from "lucide-react";
+import { Menu, Home, Sparkles, Plus, User, Lock } from "lucide-react";
 import { headerLinks } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 
@@ -30,6 +30,8 @@ const MobileNav = () => {
         return <Home className="h-5 w-5" />;
       case "AI Hub":
         return <Sparkles className="h-5 w-5" />;
+      case "Vault":
+        return <Lock className="h-5 w-5" />;
       case "Create":
         return <Plus className="h-5 w-5" />;
       case "My Profile":

@@ -13,12 +13,16 @@ import {
   getRelatedEventsByCategory,
 } from "@/lib/actions/event.actions";
 import CheckoutButton from "@/components/shared/CheckoutButton";
+import SaveToVaultButton from "@/components/shared/SaveToVaultButton";
+import { auth } from "@clerk/nextjs";
 
 const EventDetails = async ({
   params: { id },
   searchParams,
 }: SearchParamProps) => {
   const event = await getEventById(id);
+  const { sessionClaims } = auth();
+  const userId = sessionClaims?.userId as string;
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
@@ -98,7 +102,7 @@ const EventDetails = async ({
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={200}>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 items-center">
                   {event.TrailerUrl && (
                     <Button
                       asChild
@@ -117,6 +121,12 @@ const EventDetails = async ({
                       Download Now
               </Link>
                   </Button>
+                  <SaveToVaultButton 
+                    contentId={event._id} 
+                    contentType="event"
+                    userId={userId}
+                    className="ml-auto sm:ml-0"
+                  />
             </div>
               </ScrollReveal>
 

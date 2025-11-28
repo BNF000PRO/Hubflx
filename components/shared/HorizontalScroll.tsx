@@ -77,6 +77,7 @@ const HorizontalScroll = ({ data, title, collectionType, userId }: HorizontalScr
                 hasOrderLink={hasOrderLink}
                 hidePrice={hidePrice}
                 isEventCreator={isEventCreator}
+                userId={userId}
               />
             </div>
           );

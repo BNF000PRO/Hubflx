@@ -5,24 +5,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
+import SaveToVaultButton from "./SaveToVaultButton";
 
 type CardProps = {
   event: IEvent;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
   isEventCreator?: boolean; // Optional prop to avoid auth() in client components
+  userId?: string; // Pass userId from server to avoid auth() in client component
 };
 
-const Card = ({ event, hasOrderLink, hidePrice, isEventCreator: propIsEventCreator }: CardProps) => {
+const Card = ({ event, hasOrderLink, hidePrice, isEventCreator: propIsEventCreator, userId: propUserId }: CardProps) => {
   // Only use auth() if isEventCreator prop is not provided (server component context)
   let isEventCreator = false;
+  let userId: string | undefined = propUserId;
+  
   try {
     if (propIsEventCreator !== undefined) {
       isEventCreator = propIsEventCreator;
     } else {
       // Server component context - safe to use auth()
       const { sessionClaims } = auth();
-      const userId = sessionClaims?.userId as string;
+      userId = sessionClaims?.userId as string;
       isEventCreator = userId === event.organizer._id.toString();
     }
   } catch (error) {
@@ -94,9 +98,18 @@ const Card = ({ event, hasOrderLink, hidePrice, isEventCreator: propIsEventCreat
         )}
       </Link>
 
+      {/* Save to Vault Button - Top Right */}
+      <div className="absolute right-3 top-3 z-30">
+        <SaveToVaultButton 
+          contentId={event._id} 
+          contentType="event"
+          userId={userId}
+        />
+      </div>
+
       {/* Edit/Delete Actions */}
       {isEventCreator && !hidePrice && (
-        <div className="absolute right-3 top-3 flex flex-col gap-2 p-2 bg-[#0A192F]/90 backdrop-blur-md shadow-lg border border-primary-500/30 rounded-lg">
+        <div className="absolute right-3 top-14 flex flex-col gap-2 p-2 bg-[#0A192F]/90 backdrop-blur-md shadow-lg border border-primary-500/30 rounded-lg z-30">
           <Link 
             href={`/events/${event._id}/update`}
             className="p-1.5 rounded-lg hover:bg-primary-500/20 transition-colors"

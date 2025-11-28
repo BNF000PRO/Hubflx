@@ -14,6 +14,11 @@ export const headerLinks: Array<{
     public: true,
   },
   {
+    label: "Vault",
+    route: "/vault",
+    public: false,
+  },
+  {
     label: "Create",
     route: "/events/create",
     public: false,
