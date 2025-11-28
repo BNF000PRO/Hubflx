@@ -11,6 +11,7 @@ import Waveform from "@/components/shared/Waveform";
 import AnimatedIcons from "@/components/shared/AnimatedIcons";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import { IEvent } from "@/lib/database/models/event.model";
 import { SearchParamProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
@@ -177,7 +178,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
               {/* Sidebar - Smaller Cards */}
               <div className="space-y-4">
-                {events.data.slice(1, Math.min(4, events.data.length)).map((event) => (
+                {events.data.slice(1, Math.min(4, events.data.length)).map((event: IEvent) => (
                   <Link
                     key={event._id}
                     href={`/events/${event._id}`}
