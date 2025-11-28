@@ -16,22 +16,24 @@ const Navitems = ({ showAll = false }: { showAll?: boolean }) => {
     : headerLinks.filter(link => link.public || isSignedIn);
 
   return (
-    <ul
-      className="md:flex-between flex w-full 
-    flex-col items-start gap-5 md:flex-row"
-    >
+    <ul className="md:flex-between flex w-full flex-col items-start gap-4 md:flex-row md:gap-5">
       {visibleLinks.map((link) => {
         const isActive = pathname === link.route;
         return (
           <li
             key={link.route}
             className={`${
-              isActive &&
-              "text-primary-500 bg-sky-200/20 w-full rounded-lg text-left  hover:bg-sky-200/20 "
-            } flex-center p-medium-16 rounded-lg w-full text-left  whitespace-nowrap
-            `}
+              isActive
+                ? "text-primary-500 bg-sky-200/20"
+                : "text-white hover:text-primary-400"
+            } w-full md:w-auto transition-colors duration-200`}
           >
-            <Link href={link.route}>{link.label}</Link>
+            <Link 
+              href={link.route}
+              className="block w-full py-3 px-4 md:py-2 md:px-3 rounded-lg text-left whitespace-nowrap min-h-[48px] flex items-center hover:bg-primary-500/10 transition-colors"
+            >
+              {link.label}
+            </Link>
           </li>
         );
       })}

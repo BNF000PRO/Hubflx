@@ -24,30 +24,30 @@ const Header = () => {
           <Navitems />
         </nav>
         
-        {/* Mobile Navigation - Always show Home and AI Hub */}
-        <div className="md:hidden flex items-center gap-4">
-          <Link 
-            href="/" 
-            className="text-white hover:text-primary-400 transition-colors text-sm font-medium"
-          >
-            Home
-          </Link>
-          <Link 
-            href="/ai" 
-            className="text-white hover:text-primary-400 transition-colors text-sm font-medium"
-          >
-            AI Hub
-          </Link>
+        {/* Mobile Navigation - Hamburger Menu (Always Visible) */}
+        <div className="md:hidden">
+          <MobileNav />
         </div>
 
-        <div className="flex w-32 justify-end gap-3">
+        <div className="flex items-center justify-end gap-3">
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
-            <MobileNav />
           </SignedIn>
           <SignedOut>
-            <Button className="rounded-full" size="lg">
-              <Link href="/">Explore</Link>
+            <Button 
+              asChild
+              className="rounded-full bg-primary-500 hover:bg-primary-600 text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50"
+              size="lg"
+            >
+              <Link href="/sign-up">Sign Up</Link>
+            </Button>
+            <Button 
+              asChild
+              variant="outline"
+              className="rounded-full border-primary-500/50 text-primary-400 hover:bg-primary-500/10"
+              size="lg"
+            >
+              <Link href="/sign-in">Sign In</Link>
             </Button>
           </SignedOut>
         </div>

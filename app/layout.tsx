@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "The Digital City For Hustlers. Master AI. Scale Digital Growth. Level Up Your Mindset.",
   icons: {
-    icon: "/assets/images/iqcabalfav.png",
+    icon: "/iqcabalfav.png",
   },
 };
 
