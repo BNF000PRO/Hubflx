@@ -82,18 +82,23 @@ export const Slider = () => {
         {slider.map((item, index) => (
           <SwiperSlide key={index}>
             <Card
-              className="group relative bg-[#112240] border border-primary-500/30 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary-500/60 overflow-hidden glow-hover tilt-card"
+              className="group relative bg-[#112240] border border-primary-500/30 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary-500/60 overflow-hidden"
             >
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-primary-600/0 group-hover:from-primary-500/10 group-hover:to-primary-600/10 transition-all duration-300 pointer-events-none"></div>
+              {/* Animated Gradient Background - Motion Graphic Style */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-primary-600/15 to-primary-400/20 animate-gradient-shift opacity-100"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary-500/10 to-primary-600/20 animate-gradient-shift-reverse opacity-100" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute inset-0 bg-gradient-to-bl from-primary-400/15 via-transparent to-primary-500/20 animate-gradient-shift opacity-100" style={{ animationDelay: '2s' }}></div>
               
-              <CardHeader className="relative z-10 p-0 flex flex-col items-center justify-center min-h-[120px] sm:min-h-[140px]">
+              {/* Additional animated shimmer overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-500/10 to-transparent animate-shimmer opacity-60"></div>
+              
+              <CardHeader className="relative z-10 p-0 flex flex-col items-center justify-center min-h-[60px] sm:min-h-[70px]">
                 <CardTitle className="p-0 text-center">
-                  <p className="text-base sm:text-lg font-bold text-white group-hover:text-primary-400 transition-colors duration-300">
+                  <p className="text-sm sm:text-base font-bold text-white group-hover:text-primary-300 transition-colors duration-300 drop-shadow-lg">
                     {item.name}
                   </p>
                 </CardTitle>
-                <CardContent className="pt-2 px-0"></CardContent>
+                <CardContent className="pt-1 px-0"></CardContent>
               </CardHeader>
             </Card>
           </SwiperSlide>
