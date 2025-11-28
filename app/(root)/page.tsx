@@ -3,6 +3,7 @@ import Collection from "@/components/shared/Collection";
 import DetailsSubscribe from "@/components/shared/DetailsSubscribe";
 import Search from "@/components/shared/Search";
 import { Slider } from "@/components/shared/Slider";
+import HorizontalScroll from "@/components/shared/HorizontalScroll";
 import FloatingParticles from "@/components/shared/FloatingParticles";
 import AnimatedGradient from "@/components/shared/AnimatedGradient";
 import ScrollReveal from "@/components/shared/ScrollReveal";
@@ -11,6 +12,7 @@ import AnimatedIcons from "@/components/shared/AnimatedIcons";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,8 +24,12 @@ export default async function Home({ searchParams }: SearchParamProps) {
     query: searchText,
     category,
     page,
-    limit: 12,
+    limit: 1000, // Increased limit to show all available content
   });
+
+  // Get user ID for event creator check (server-side)
+  const { sessionClaims } = auth();
+  const userId = sessionClaims?.userId as string;
 
   return (
     <>
@@ -55,7 +61,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
                   <span className="bg-gradient-to-r from-white via-primary-300 to-primary-500 bg-clip-text text-transparent">
                     The Digital City For Hustlers
                   </span>
-                </h1>
+            </h1>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-lg sm:text-xl md:text-2xl text-gray-300">
                   <span className="font-medium">Master AI.</span>
@@ -88,20 +94,20 @@ export default async function Home({ searchParams }: SearchParamProps) {
                   <Link href="#feed">
                     <span className="relative z-10">Explore Community</span>
                   </Link>
-                </Button>
+            </Button>
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Community Feed - Skool Style Simple Layout */}
+      {/* Netflix-Style Content Layout */}
       <section
         id="feed"
         className="relative wrapper py-8 sm:py-12"
       >
-        {/* Top Controls */}
-        <div className="mb-6 flex flex-col sm:flex-row gap-3">
+        {/* Top Controls - Minimal */}
+        <div className="mb-8 flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
             <Search />
           </div>
@@ -110,24 +116,133 @@ export default async function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
 
-        {/* Trending Topics - Compact */}
+        {/* Featured Hero Section - Large Display */}
+        {events?.data && events.data.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">Featured</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 lg:gap-8">
+              {/* Large Featured Card - Portrait */}
+              <div className="group relative overflow-visible rounded-xl border border-primary-500/20 bg-[#112240] hover:border-primary-500/50 transition-all duration-300">
+                {/* Fluid Flowing Glow for Featured - Always Visible */}
+                <div 
+                  className="absolute -inset-0.5 rounded-xl animate-fluid-glow pointer-events-none -z-10 opacity-100"
+                  style={{
+                    background: 'linear-gradient(45deg, transparent 30%, rgba(98, 76, 245, 0.6) 50%, transparent 70%)',
+                    backgroundSize: '200% 200%',
+                  }}
+                ></div>
+                <div 
+                  className="absolute -inset-1 rounded-xl animate-fluid-glow-reverse pointer-events-none -z-10 opacity-100"
+                  style={{
+                    background: 'linear-gradient(135deg, transparent 30%, rgba(112, 92, 247, 0.5) 50%, transparent 70%)',
+                    backgroundSize: '200% 200%',
+                  }}
+                ></div>
+                
+                <Link href={`/events/${events.data[0]._id}`} className="block">
+                  <div className="relative overflow-visible flex flex-col items-center justify-center p-4">
+                    {events.data[0].imageUrl && (
+                      <img
+                        src={events.data[0].imageUrl}
+                        alt={events.data[0].title}
+                        className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                        style={{ 
+                          display: 'block', 
+                          opacity: 1, 
+                          visibility: 'visible',
+                          maxHeight: '500px',
+                          maxWidth: '100%',
+                        }}
+                      />
+                    )}
+                    <div className="w-full mt-4 p-6 sm:p-8 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/80 to-transparent rounded-lg">
+                      <div className="flex gap-2 mb-3">
+                        <span className="px-3 py-1 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30">
+                          {events.data[0].isFree ? "FREE" : `$${events.data[0].price}`}
+                        </span>
+                        <span className="px-3 py-1 rounded-full text-xs font-medium text-gray-300 bg-primary-500/10 border border-primary-500/30">
+                          {events.data[0].category.name}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 line-clamp-2 group-hover:text-primary-400 transition-colors">
+                        {events.data[0].title}
+                      </h3>
+                      <p className="text-sm text-gray-400 line-clamp-2">
+                        {events.data[0].description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Sidebar - Smaller Cards */}
+              <div className="space-y-4">
+                {events.data.slice(1, Math.min(4, events.data.length)).map((event) => (
+                  <Link
+                    key={event._id}
+                    href={`/events/${event._id}`}
+                    className="group relative block overflow-hidden rounded-lg border border-primary-500/20 bg-[#112240] hover:border-primary-500/50 transition-all duration-300"
+                  >
+                    {/* Fluid Glow for Side Cards - Always Visible */}
+                    <div 
+                      className="absolute -inset-0.5 rounded-lg animate-fluid-glow pointer-events-none -z-10 opacity-100"
+                      style={{
+                        background: 'linear-gradient(45deg, transparent 30%, rgba(98, 76, 245, 0.4) 50%, transparent 70%)',
+                        backgroundSize: '200% 200%',
+                      }}
+                    ></div>
+                    
+                    <div className="flex gap-3">
+                      <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 overflow-hidden">
+                        {event.imageUrl && (
+                          <img
+                            src={event.imageUrl}
+                            alt={event.title}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            style={{ display: 'block', opacity: 1, visibility: 'visible' }}
+                          />
+                        )}
+                      </div>
+                      <div className="flex-1 p-3 flex flex-col justify-center min-w-0">
+                        <h4 className="text-sm font-semibold text-white line-clamp-2 group-hover:text-primary-400 transition-colors mb-1">
+                          {event.title}
+                        </h4>
+                        <div className="flex gap-1.5 flex-wrap">
+                          <span className="px-2 py-0.5 rounded text-xs font-medium text-emerald-300 bg-emerald-500/20">
+                            {event.isFree ? "FREE" : `$${event.price}`}
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-xs text-gray-400">
+                            {event.category.name}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Trending Topics */}
         <div className="mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">Trending Topics</h2>
           <Slider />
         </div>
 
-        {/* Main Feed - Simple Continuous Layout */}
-        <Collection
-          data={events?.data || []}
-          emptyTitle="No Contents Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={12}
-          page={page}
-          totalPages={events?.totalPages}
-        />
+        {/* Main Collection - Horizontal Scroll */}
+        {events?.data && events.data.length > 4 && (
+          <HorizontalScroll
+            data={events.data.slice(4)}
+            title="All Resources"
+            collectionType="All_Events"
+            userId={userId}
+          />
+        )}
+        
 
         {/* Subscribe - Mobile Only */}
-        <div className="mt-6 sm:hidden">
+        <div className="mt-8 sm:hidden">
           <DetailsSubscribe />
         </div>
       </section>

@@ -280,23 +280,70 @@ body {
 
   @keyframes pulse-glow {
     0%, 100% {
-      opacity: 0.3;
+      opacity: 0.4;
       transform: scale(1);
     }
     50% {
-      opacity: 0.6;
-      transform: scale(1.05);
+      opacity: 0.8;
+      transform: scale(1.08);
     }
   }
 
   @keyframes pulse-glow-slow {
     0%, 100% {
-      opacity: 0.1;
+      opacity: 0.2;
       transform: scale(1);
     }
     50% {
+      opacity: 0.5;
+      transform: scale(1.12);
+    }
+  }
+
+  /* Fluid flowing glow animation - like water flowing around edges */
+  @keyframes fluid-glow {
+    0% {
+      background-position: 0% 0%;
       opacity: 0.3;
-      transform: scale(1.1);
+    }
+    25% {
+      background-position: 100% 0%;
+      opacity: 0.6;
+    }
+    50% {
+      background-position: 100% 100%;
+      opacity: 0.4;
+    }
+    75% {
+      background-position: 0% 100%;
+      opacity: 0.7;
+    }
+    100% {
+      background-position: 0% 0%;
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes fluid-glow-reverse {
+    0% {
+      background-position: 100% 100%;
+      opacity: 0.2;
+    }
+    25% {
+      background-position: 0% 100%;
+      opacity: 0.5;
+    }
+    50% {
+      background-position: 0% 0%;
+      opacity: 0.3;
+    }
+    75% {
+      background-position: 100% 0%;
+      opacity: 0.6;
+    }
+    100% {
+      background-position: 100% 100%;
+      opacity: 0.2;
     }
   }
 
@@ -306,6 +353,26 @@ body {
 
   .animate-pulse-glow-slow {
     animation: pulse-glow-slow 4s ease-in-out infinite;
+  }
+
+  .animate-fluid-glow {
+    animation: fluid-glow 8s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-fluid-glow-reverse {
+    animation: fluid-glow-reverse 10s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
   .animate-float {

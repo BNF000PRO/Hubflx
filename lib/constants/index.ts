@@ -1,15 +1,27 @@
-export const headerLinks = [
+export const headerLinks: Array<{
+  label: string;
+  route: string;
+  public: boolean;
+}> = [
   {
     label: "Home",
     route: "/",
+    public: true,
+  },
+  {
+    label: "AI Hub",
+    route: "/ai",
+    public: true,
   },
   {
     label: "Create",
     route: "/events/create",
+    public: false,
   },
   {
     label: "My Profile",
     route: "/profile",
+    public: false,
   },
 ];
 

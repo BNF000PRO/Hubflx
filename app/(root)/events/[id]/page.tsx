@@ -90,11 +90,11 @@ const EventDetails = async ({
                     <p className="text-sm text-gray-400">
                       by{" "}
                       <span className="text-primary-400 font-medium">
-                        {event.organizer.firstName} {event.organizer.lastName}
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                    {event.organizer.firstName} {event.organizer.lastName}
+                  </span>
+                </p>
+              </div>
+            </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={200}>
@@ -107,7 +107,7 @@ const EventDetails = async ({
                       <Link href={event.TrailerUrl} target="_blank">
                         Watch Trailer
                       </Link>
-                    </Button>
+                </Button>
                   )}
                   <Button
                     asChild
@@ -115,17 +115,17 @@ const EventDetails = async ({
                   >
                     <Link href={event.url} target="_blank">
                       Download Now
-                    </Link>
+              </Link>
                   </Button>
-                </div>
+            </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={400}>
                 <div className="flex flex-col gap-4 p-4 rounded-xl bg-[#112240] border border-primary-500/20">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary-500/10 border border-primary-500/30">
-                      <Image
-                        src="/assets/icons/calendar.svg"
+                <Image
+                  src="/assets/icons/calendar.svg"
                         alt="calendar"
                         width={16}
                         height={16}
@@ -138,24 +138,24 @@ const EventDetails = async ({
                       </p>
                       <span className="text-gray-500">•</span>
                       <p className="text-sm text-gray-300">
-                        {formatDateTime(event.startDateTime).timeOnly}
-                      </p>
-                    </div>
-                  </div>
+                    {formatDateTime(event.startDateTime).timeOnly}
+                  </p>
+                </div>
+              </div>
 
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary-500/10 border border-primary-500/30">
-                      <Image
-                        src="/assets/icons/location.svg"
-                        alt="location"
+                <Image
+                  src="/assets/icons/location.svg"
+                  alt="location"
                         width={16}
                         height={16}
                         className="filter brightness-0 invert opacity-70"
-                      />
+                />
                     </div>
                     <p className="text-sm text-gray-300">{event.location}</p>
-                  </div>
-                </div>
+              </div>
+            </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={600}>
@@ -164,7 +164,7 @@ const EventDetails = async ({
                   <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                     {event.description}
                   </p>
-                </div>
+            </div>
               </ScrollReveal>
             </AnimatedGradient>
 
@@ -186,15 +186,15 @@ const EventDetails = async ({
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={200}>
-          <Collection
-            data={relatedEvents?.data}
-            emptyTitle="No Contents Found"
-            emptyStateSubtext="Come back later"
-            collectionType="All_Events"
-            limit={6}
-            page={searchParams.page as string}
-            totalPages={relatedEvents?.totalPages}
-          />
+        <Collection
+          data={relatedEvents?.data}
+          emptyTitle="No Contents Found"
+          emptyStateSubtext="Come back later"
+          collectionType="All_Events"
+          limit={6}
+          page={searchParams.page as string}
+          totalPages={relatedEvents?.totalPages}
+        />
         </ScrollReveal>
       </section>
     </>

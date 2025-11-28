@@ -26,15 +26,15 @@ const MobileNav = () => {
             className="cursor-pointer"
           />
         </SheetTrigger>
-        <SheetContent className="flex flex-col gap-6 md:hidden bg-white">
+        <SheetContent className="flex flex-col gap-6 md:hidden bg-[#0A192F] border-primary-500/20">
           <Image
             alt="logo"
             src="/assets/icons/iqcaballogo.png"
             width={110}
             height={20}
           />
-          <Separator className="border border-gray-200 w-full" />
-          <Navitems />
+          <Separator className="border border-primary-500/20 w-full" />
+          <Navitems showAll={true} />
         </SheetContent>
       </Sheet>
     </nav>

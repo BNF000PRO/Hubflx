@@ -19,11 +19,26 @@ const Header = () => {
           />
         </Link>
 
-        <SignedIn>
-          <nav className="md:flex-between hidden w-full max-w-xs">
-            <Navitems />
-          </nav>
-        </SignedIn>
+        {/* Desktop Navigation - Shows public links to all, private links to signed-in users */}
+        <nav className="md:flex-between hidden w-full max-w-xs">
+          <Navitems />
+        </nav>
+        
+        {/* Mobile Navigation - Always show Home and AI Hub */}
+        <div className="md:hidden flex items-center gap-4">
+          <Link 
+            href="/" 
+            className="text-white hover:text-primary-400 transition-colors text-sm font-medium"
+          >
+            Home
+          </Link>
+          <Link 
+            href="/ai" 
+            className="text-white hover:text-primary-400 transition-colors text-sm font-medium"
+          >
+            AI Hub
+          </Link>
+        </div>
 
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>

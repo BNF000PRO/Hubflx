@@ -17,22 +17,22 @@ const DetailsSubscribe = () => {
         <div className="space-y-2">
           <h3 className="text-lg font-bold text-white">Welcome to Hubnet</h3>
           <p className="text-sm text-gray-300 leading-relaxed">
-            Elevate your online experience! 🚀 Join our Whatsapp Channel to stay
-            updated with the latest contents! 🌟💻✨
-          </p>
+        Elevate your online experience! 🚀 Join our Whatsapp Channel to stay
+        updated with the latest contents! 🌟💻✨
+      </p>
         </div>
 
         <Button 
           asChild
           className="liquid-button mt-auto bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl glow-primary glow-hover transition-all duration-300 hover:scale-105"
         >
-          <Link
-            href="https://chat.whatsapp.com/BDmeql20MzELIsPJfBxeTt"
-            target={"_blank"}
-          >
-            Subscribe for free
-          </Link>
-        </Button>
+        <Link
+          href="https://chat.whatsapp.com/BDmeql20MzELIsPJfBxeTt"
+          target={"_blank"}
+        >
+          Subscribe for free
+        </Link>
+      </Button>
       </div>
     </div>
   );

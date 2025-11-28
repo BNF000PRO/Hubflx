@@ -32,7 +32,7 @@ const Collection = ({
       {eventsData.length > 0 ? (
         <div className="flex flex-col gap-8 sm:gap-12 w-full">
           <ul
-            className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 list-none"
+            className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 list-none"
           >
             {eventsData.map((event) => {
               const hasOrderLink = collectionType === "Event_Organized";
@@ -51,11 +51,11 @@ const Collection = ({
           </ul>
           {totalPages > 1 && (
             <div className="pt-4 w-full">
-              <Pagination
-                urlParamName={urlParamName}
-                page={page}
-                totalPages={totalPages}
-              />
+            <Pagination
+              urlParamName={urlParamName}
+              page={page}
+              totalPages={totalPages}
+            />
             </div>
           )}
         </div>

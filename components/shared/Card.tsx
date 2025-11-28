@@ -10,39 +10,68 @@ type CardProps = {
   event: IEvent;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
+  isEventCreator?: boolean; // Optional prop to avoid auth() in client components
 };
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
-  const { sessionClaims } = auth();
-  const userId = sessionClaims?.userId as string;
-
-  const isEventCreator = userId === event.organizer._id.toString();
+const Card = ({ event, hasOrderLink, hidePrice, isEventCreator: propIsEventCreator }: CardProps) => {
+  // Only use auth() if isEventCreator prop is not provided (server component context)
+  let isEventCreator = false;
+  try {
+    if (propIsEventCreator !== undefined) {
+      isEventCreator = propIsEventCreator;
+    } else {
+      // Server component context - safe to use auth()
+      const { sessionClaims } = auth();
+      const userId = sessionClaims?.userId as string;
+      isEventCreator = userId === event.organizer._id.toString();
+    }
+  } catch (error) {
+    // If auth() fails (client context), use prop or default to false
+    isEventCreator = propIsEventCreator || false;
+  }
   return (
     <div
       className="group relative flex w-full flex-col overflow-hidden bg-[#112240] border border-primary-500/20
     shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary-500/50
     tilt-card glow-hover"
     >
-      {/* Infinite Pulse Glow Animation - Always Visible Behind Card */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-primary-500/15 via-primary-600/15 to-primary-500/15 rounded-lg animate-pulse-glow blur-2xl -z-10"></div>
-      <div className="absolute -inset-3 bg-gradient-to-r from-primary-600/8 via-primary-500/8 to-primary-600/8 rounded-lg animate-pulse-glow-slow blur-3xl -z-10"></div>
+      {/* Fluid Flowing Glow Around Card Edges - Always Visible, Infinite Animation */}
+      <div 
+        className="absolute -inset-0.5 rounded-lg animate-fluid-glow pointer-events-none -z-10 opacity-100"
+        style={{
+          background: 'linear-gradient(45deg, transparent 30%, rgba(98, 76, 245, 0.5) 50%, transparent 70%)',
+          backgroundSize: '200% 200%',
+        }}
+      ></div>
+      <div 
+        className="absolute -inset-1 rounded-lg animate-fluid-glow-reverse pointer-events-none -z-10 opacity-100"
+        style={{
+          background: 'linear-gradient(135deg, transparent 30%, rgba(112, 92, 247, 0.4) 50%, transparent 70%)',
+          backgroundSize: '200% 200%',
+        }}
+      ></div>
+      <div 
+        className="absolute -inset-0.5 rounded-lg animate-fluid-glow pointer-events-none -z-10 opacity-100"
+        style={{
+          background: 'linear-gradient(225deg, transparent 30%, rgba(98, 76, 245, 0.35) 50%, transparent 70%)',
+          backgroundSize: '200% 200%',
+          animationDelay: '2s',
+        }}
+      ></div>
       
-      {/* Soft Glow Behind LinkComponent */}
-      <div className="absolute -inset-1 bg-gradient-to-br from-primary-500/10 to-primary-600/10 rounded-lg blur-xl -z-10 animate-pulse-glow"></div>
-      
-      {/* Image Container - Full Height, No Spacing */}
+      {/* Image Container - Full Height, No Cropping */}
       <Link
         href={`/events/${event._id}`}
-        className="relative block w-full bg-gradient-to-br from-[#0A192F] to-[#112240] overflow-hidden h-[500px] sm:h-[600px]"
+        className="relative block w-full bg-gradient-to-br from-[#0A192F] to-[#112240] overflow-visible"
         style={{ margin: 0, padding: 0, marginBottom: 0 }}
       >
         {event.imageUrl ? (
           <>
-            {/* Image fills entire container with no spacing */}
+            {/* Image displays full height, no cropping */}
             <img
               src={event.imageUrl}
               alt={event.title}
-              className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
               style={{
                 display: 'block',
                 opacity: 1,
@@ -50,6 +79,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
                 zIndex: 10,
                 margin: 0,
                 padding: 0,
+                maxHeight: '400px',
               }}
             />
             {/* Glow overlay on hover */}
@@ -84,45 +114,40 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         </div>
       )}
 
-      {/* Content - Directly After Image, No Gap */}
-      <div className="flex flex-col gap-4 p-5 sm:p-6" style={{ marginTop: 0 }}>
-        {/* Badges */}
-        <div className="flex flex-wrap gap-2">
-          <span className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 glow-primary">
+      {/* Content - Compact and Minimal */}
+      <div className="flex flex-col gap-3 p-4 sm:p-5" style={{ marginTop: 0 }}>
+        {/* Badges - Compact */}
+        <div className="flex flex-wrap gap-1.5">
+          <span className="px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30">
             {event.isFree ? "FREE" : `$${event.price}`}
           </span>
-          <span className="px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-gray-300 bg-primary-500/10 border border-primary-500/30">
+          <span className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-300 bg-primary-500/10 border border-primary-500/30">
             {event.category.name}
           </span>
         </div>
 
-        {/* Date */}
-        <p className="text-sm text-gray-400 font-medium">
-          {formatDateTime(event.startDateTime).dateTime}
-        </p>
-
-        {/* Title */}
+        {/* Title - Prominent */}
         <Link href={`/events/${event._id}`} className="group/title">
-          <h3 className="text-lg sm:text-xl font-semibold text-white line-clamp-2 group-hover/title:text-primary-400 transition-colors">
+          <h3 className="text-base sm:text-lg font-semibold text-white line-clamp-2 group-hover/title:text-primary-400 transition-colors leading-tight">
             {event.title}
           </h3>
         </Link>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-primary-500/20">
-          <p className="text-sm text-gray-400 font-medium truncate pr-2">
+        {/* Footer - Minimal */}
+        <div className="flex items-center justify-between pt-2 border-t border-primary-500/10">
+          <p className="text-xs text-gray-500 truncate pr-2">
             {event.organizer.firstName} {event.organizer.lastName}
           </p>
           <Link 
             href={`/events/${event._id}`} 
-            className="flex items-center gap-1.5 text-primary-400 hover:text-primary-300 font-medium text-sm group/link transition-colors"
+            className="flex items-center gap-1 text-primary-400 hover:text-primary-300 font-medium text-xs group/link transition-colors"
           >
             <span>View</span>
             <img
               src="/assets/icons/arrow.svg"
               alt="arrow"
-              width={12}
-              height={12}
+              width={10}
+              height={10}
               className="transform group-hover/link:translate-x-0.5 transition-transform filter brightness-0 invert"
               style={{ display: 'block', opacity: 1, visibility: 'visible' }}
             />
